@@ -6,6 +6,8 @@ $request = $request ?? [
     'requester_name' => '',
     'location' => '',
     'contact' => '',
+    'priority' => 'normaal',
+    'needed_by' => '',
     'status' => 'open',
 ];
 $errors = $errors ?? [];
@@ -55,6 +57,24 @@ $errors = $errors ?? [];
     </label>
 
     <label>
+        Prioriteit
+        <select name="priority">
+            <?php foreach (PRIORITIES as $priority): ?>
+                <option value="<?= e($priority) ?>" <?= $request['priority'] === $priority ? 'selected' : '' ?>>
+                    <?= e(priority_label($priority)) ?>
+                </option>
+            <?php endforeach; ?>
+        </select>
+        <?php if (isset($errors['priority'])): ?><span class="error"><?= e($errors['priority']) ?></span><?php endif; ?>
+    </label>
+
+    <label>
+        Gewenst voor
+        <input type="date" name="needed_by" value="<?= e($request['needed_by']) ?>">
+        <?php if (isset($errors['needed_by'])): ?><span class="error"><?= e($errors['needed_by']) ?></span><?php endif; ?>
+    </label>
+
+    <label>
         Status
         <select name="status">
             <?php foreach (STATUSES as $status): ?>
@@ -66,4 +86,3 @@ $errors = $errors ?? [];
         <?php if (isset($errors['status'])): ?><span class="error"><?= e($errors['status']) ?></span><?php endif; ?>
     </label>
 </div>
-

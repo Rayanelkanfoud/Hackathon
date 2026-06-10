@@ -46,13 +46,36 @@ Dit is de standaardconfiguratie voor WAMP.
 - Hulpvraag wijzigen
 - Hulpvraag verwijderen
 - Status aanpassen naar open, in behandeling of opgelost
+- Prioriteit instellen: laag, normaal of hoog
+- Gewenste datum per hulpvraag opslaan
 - Zoeken op titel, omschrijving, naam of locatie
-- Filteren op categorie en status
+- Filteren op categorie, prioriteit en status
 - Dashboard met statistieken
+- Animaties, hover-effecten en oplopende tellers
+- Responsive layout voor laptop en mobiel
+
+## Waarom deze casus
+
+Gekozen concept: **1. SamenSterk - De Buurt-Helpdesk**.
+
+Deze casus past goed bij de opdracht omdat hij haalbaar is binnen een hackathon en tegelijk genoeg technische onderdelen bevat:
+
+- Eerstejaarsdeel: HTML, CSS, JavaScript, formulieren en CRUD-schermen.
+- Tweedejaarsdeel: PHP-structuur, MySQL-database, PDO, validatie en statuslogica.
+- Demo/pitch: maatschappelijke impact, duidelijke workflow en zichtbare resultaten.
+
+## Beoordelingspunten die erin zitten
+
+- Werkende CRUD-functionaliteit
+- MySQL database met voorbeelddata
+- PHP backend zonder framework, dus makkelijk te draaien in WAMP
+- JavaScript voor interactie en animaties
+- Nette en responsive interface
+- Branches in GitHub
+- README met installatie-instructies
 
 ## Git branches
 
 Gebruikte branch voor de uitwerking:
 
 - `feature/techstack-samensterk`
-

@@ -26,6 +26,7 @@ require __DIR__ . '/includes/header.php';
         <article class="detail-card">
             <div class="card-topline">
                 <span class="category"><?= e($request['category']) ?></span>
+                <span class="priority <?= e(priority_class($request['priority'])) ?>"><?= e(priority_label($request['priority'])) ?></span>
                 <span class="status <?= e(status_class($request['status'])) ?>"><?= e(status_label($request['status'])) ?></span>
             </div>
             <h1><?= e($request['title']) ?></h1>
@@ -43,6 +44,14 @@ require __DIR__ . '/includes/header.php';
                 <div>
                     <dt>Contact</dt>
                     <dd><?= e($request['contact']) ?></dd>
+                </div>
+                <div>
+                    <dt>Gewenst voor</dt>
+                    <dd><?= e(format_date($request['needed_by'])) ?></dd>
+                </div>
+                <div>
+                    <dt>Prioriteit</dt>
+                    <dd><?= e(priority_label($request['priority'])) ?></dd>
                 </div>
             </dl>
 
@@ -77,4 +86,3 @@ require __DIR__ . '/includes/header.php';
 <?php endif; ?>
 
 <?php require __DIR__ . '/includes/footer.php'; ?>
-

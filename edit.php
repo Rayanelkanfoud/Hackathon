@@ -27,8 +27,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'requester_name' => trim((string) ($_POST['requester_name'] ?? '')),
         'location' => trim((string) ($_POST['location'] ?? '')),
         'contact' => trim((string) ($_POST['contact'] ?? '')),
+        'priority' => trim((string) ($_POST['priority'] ?? 'normaal')),
+        'needed_by' => trim((string) ($_POST['needed_by'] ?? '')),
         'status' => trim((string) ($_POST['status'] ?? 'open')),
     ];
+    $request['needed_by'] = $request['needed_by'] === '' ? null : $request['needed_by'];
     $errors = validate_request($request);
 
     if ($errors === []) {
@@ -40,6 +43,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                  requester_name = :requester_name,
                  location = :location,
                  contact = :contact,
+                 priority = :priority,
+                 needed_by = :needed_by,
                  status = :status
              WHERE id = :id'
         );
@@ -67,4 +72,3 @@ require __DIR__ . '/includes/header.php';
 </form>
 
 <?php require __DIR__ . '/includes/footer.php'; ?>
-

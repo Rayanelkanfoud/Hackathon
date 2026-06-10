@@ -6,6 +6,7 @@ require_once __DIR__ . '/../config/database.php';
 
 const CATEGORIES = ['Boodschappen', 'Computerhulp', 'Tuin', 'Klusje', 'Gezelschap', 'Overig'];
 const STATUSES = ['open', 'in_behandeling', 'opgelost'];
+const PRIORITIES = ['laag', 'normaal', 'hoog'];
 
 function e(?string $value): string
 {
@@ -38,6 +39,26 @@ function status_class(string $status): string
     };
 }
 
+function priority_label(string $priority): string
+{
+    return match ($priority) {
+        'laag' => 'Lage prioriteit',
+        'normaal' => 'Normaal',
+        'hoog' => 'Hoge prioriteit',
+        default => 'Normaal',
+    };
+}
+
+function priority_class(string $priority): string
+{
+    return match ($priority) {
+        'laag' => 'priority-low',
+        'normaal' => 'priority-normal',
+        'hoog' => 'priority-high',
+        default => 'priority-normal',
+    };
+}
+
 function validate_request(array $data): array
 {
     $errors = [];
@@ -54,6 +75,14 @@ function validate_request(array $data): array
 
     if (($data['status'] ?? 'open') !== '' && !in_array($data['status'], STATUSES, true)) {
         $errors['status'] = 'Kies een geldige status.';
+    }
+
+    if (($data['priority'] ?? 'normaal') !== '' && !in_array($data['priority'], PRIORITIES, true)) {
+        $errors['priority'] = 'Kies een geldige prioriteit.';
+    }
+
+    if (($data['needed_by'] ?? '') !== '' && !preg_match('/^\d{4}-\d{2}-\d{2}$/', (string) $data['needed_by'])) {
+        $errors['needed_by'] = 'Gebruik een geldige datum.';
     }
 
     if (strlen(trim((string) ($data['title'] ?? ''))) > 120) {
@@ -84,6 +113,15 @@ function request_count_by_status(): array
     return $counts;
 }
 
+function format_date(?string $date): string
+{
+    if ($date === null || $date === '') {
+        return 'Geen datum';
+    }
+
+    return date('d-m-Y', strtotime($date));
+}
+
 function database_error_page(Throwable $exception): never
 {
     http_response_code(500);
@@ -108,4 +146,3 @@ function database_error_page(Throwable $exception): never
 HTML;
     exit;
 }
-

@@ -9,9 +9,11 @@ $request = [
     'description' => '',
     'category' => '',
     'requester_name' => '',
-    'location' => '',
-    'contact' => '',
-    'status' => 'open',
+        'location' => '',
+        'contact' => '',
+        'priority' => 'normaal',
+        'needed_by' => '',
+        'status' => 'open',
 ];
 $errors = [];
 
@@ -23,14 +25,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'requester_name' => trim((string) ($_POST['requester_name'] ?? '')),
         'location' => trim((string) ($_POST['location'] ?? '')),
         'contact' => trim((string) ($_POST['contact'] ?? '')),
+        'priority' => trim((string) ($_POST['priority'] ?? 'normaal')),
+        'needed_by' => trim((string) ($_POST['needed_by'] ?? '')),
         'status' => trim((string) ($_POST['status'] ?? 'open')),
     ];
+    $request['needed_by'] = $request['needed_by'] === '' ? null : $request['needed_by'];
     $errors = validate_request($request);
 
     if ($errors === []) {
         $statement = db()->prepare(
-            'INSERT INTO help_requests (title, description, category, requester_name, location, contact, status)
-             VALUES (:title, :description, :category, :requester_name, :location, :contact, :status)'
+            'INSERT INTO help_requests (title, description, category, requester_name, location, contact, priority, needed_by, status)
+             VALUES (:title, :description, :category, :requester_name, :location, :contact, :priority, :needed_by, :status)'
         );
         $statement->execute($request);
         redirect('requests.php');
@@ -56,4 +61,3 @@ require __DIR__ . '/includes/header.php';
 </form>
 
 <?php require __DIR__ . '/includes/footer.php'; ?>
-
