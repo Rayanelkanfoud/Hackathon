@@ -51,7 +51,7 @@ Dit is de standaardconfiguratie voor WAMP.
 - Zoeken op titel, omschrijving, naam of locatie
 - Filteren op categorie, prioriteit en status
 - Dashboard met statistieken
-- Animaties, hover-effecten en oplopende tellers
+- Rustige interface met subtiele hover-effecten
 - Responsive layout voor laptop en mobiel
 
 ## Waarom deze casus

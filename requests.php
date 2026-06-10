@@ -53,7 +53,7 @@ require __DIR__ . '/includes/header.php';
 <section class="page-title">
     <p class="eyebrow">SamenSterk</p>
     <h1>Hulpvragen</h1>
-    <p>Zoek, filter en beheer alle hulpvragen uit de buurt. De kaarten laten direct zien wat urgent is en welke aanvraag al wordt opgepakt.</p>
+    <p>Bekijk alle hulpvragen uit de database. Je kunt zoeken, filteren, details openen en bestaande gegevens aanpassen.</p>
 </section>
 
 <form class="filters" method="get" action="requests.php" data-filter-form>

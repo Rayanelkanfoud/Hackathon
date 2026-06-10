@@ -19,60 +19,63 @@ $activePage = 'home';
 require __DIR__ . '/includes/header.php';
 ?>
 
-<section class="hero reveal">
-    <div class="hero-copy">
+<section class="hero">
+    <div>
         <p class="eyebrow">Hackathon casus 1</p>
-        <h1>SamenSterk maakt burenhulp direct zichtbaar.</h1>
-        <p>Een kleurrijk en praktisch platform waar buurtbewoners hulpvragen plaatsen, vrijwilligers snel urgentie zien en teams CRUD, filters en statusbeheer demonstreren.</p>
+        <h1>SamenSterk - De Buurt-Helpdesk</h1>
+        <p>Een eenvoudige webapplicatie waarmee buurtbewoners hulpvragen kunnen plaatsen en beheren. Het project laat de gevraagde techstack zien: HTML, CSS, JavaScript, PHP en MySQL.</p>
         <div class="hero-actions">
-            <a class="button primary" href="create.php">Plaats hulpvraag</a>
-            <a class="button secondary" href="requests.php">Bekijk hulpvragen</a>
-        </div>
-        <div class="trust-row" aria-label="Project kenmerken">
-            <span>PHP</span>
-            <span>MySQL</span>
-            <span>CRUD</span>
-            <span>Responsive</span>
+            <a class="button primary" href="create.php">Nieuwe hulpvraag</a>
+            <a class="button secondary" href="requests.php">Naar overzicht</a>
         </div>
     </div>
-    <aside class="hero-panel" aria-label="Live overzicht">
-        <div class="live-badge">Live demo</div>
-        <h2>Vandaag in de buurt</h2>
+
+    <aside class="hero-panel" aria-label="Projectinformatie">
+        <h2>Projectinformatie</h2>
+        <dl class="project-info">
+            <div>
+                <dt>Concept</dt>
+                <dd>SamenSterk</dd>
+            </div>
+            <div>
+                <dt>Onderwerp</dt>
+                <dd>Buurtbewoners helpen elkaar</dd>
+            </div>
+            <div>
+                <dt>Techniek</dt>
+                <dd>PHP, MySQL, JavaScript</dd>
+            </div>
+        </dl>
         <div class="hero-meter">
             <span style="width: <?= $totalRequests > 0 ? (int) round(($counts['opgelost'] / $totalRequests) * 100) : 0 ?>%"></span>
         </div>
-        <p><?= $counts['opgelost'] ?> van <?= $totalRequests ?> hulpvragen opgelost.</p>
-        <ul class="check-list">
-            <li>Veilige PDO prepared statements</li>
-            <li>Filters met JavaScript auto-submit</li>
-            <li>Prioriteit en deadline per aanvraag</li>
-        </ul>
+        <p class="muted"><?= $counts['opgelost'] ?> van <?= $totalRequests ?> hulpvragen staan op opgelost.</p>
     </aside>
 </section>
 
-<section class="stats-grid reveal" aria-label="Status overzicht">
+<section class="stats-grid" aria-label="Status overzicht">
     <article class="stat-card">
-        <span data-count="<?= $counts['open'] ?>"><?= $counts['open'] ?></span>
+        <span><?= $counts['open'] ?></span>
         <p>Open hulpvragen</p>
     </article>
     <article class="stat-card">
-        <span data-count="<?= $counts['in_behandeling'] ?>"><?= $counts['in_behandeling'] ?></span>
+        <span><?= $counts['in_behandeling'] ?></span>
         <p>In behandeling</p>
     </article>
     <article class="stat-card">
-        <span data-count="<?= $counts['opgelost'] ?>"><?= $counts['opgelost'] ?></span>
+        <span><?= $counts['opgelost'] ?></span>
         <p>Opgelost</p>
     </article>
     <article class="stat-card highlight">
-        <span data-count="<?= $urgentOpen ?>"><?= $urgentOpen ?></span>
+        <span><?= $urgentOpen ?></span>
         <p>Urgent open</p>
     </article>
 </section>
 
-<section class="content-section reveal">
+<section class="content-section">
     <div class="section-heading">
         <div>
-            <p class="eyebrow">Nieuwste aanvragen</p>
+            <p class="eyebrow">Overzicht</p>
             <h2>Recente hulpvragen</h2>
         </div>
         <a class="button secondary" href="requests.php">Alle hulpvragen</a>
@@ -99,10 +102,10 @@ require __DIR__ . '/includes/header.php';
     </div>
 </section>
 
-<section class="split-section reveal">
+<section class="split-section">
     <div class="content-section compact">
-        <p class="eyebrow">Proces</p>
-        <h2>Hoe de demo werkt</h2>
+        <p class="eyebrow">Werkwijze</p>
+        <h2>Gebruikersflow</h2>
         <div class="timeline">
             <div>
                 <span>1</span>
@@ -112,7 +115,7 @@ require __DIR__ . '/includes/header.php';
             <div>
                 <span>2</span>
                 <h3>Vrijwilliger kiest</h3>
-                <p>Via filters vindt iemand snel een passende hulpvraag in de buurt.</p>
+                <p>Via zoeken en filters vindt iemand snel een passende hulpvraag.</p>
             </div>
             <div>
                 <span>3</span>
@@ -123,13 +126,13 @@ require __DIR__ . '/includes/header.php';
     </div>
 
     <div class="content-section compact accent-panel">
-        <p class="eyebrow">Pitchpunten</p>
-        <h2>Waarom dit scoort</h2>
+        <p class="eyebrow">Opdracht</p>
+        <h2>Wat is uitgewerkt</h2>
         <ul class="feature-list">
-            <li><strong>Maatschappelijke impact:</strong> minder eenzaamheid en meer lokale samenwerking.</li>
-            <li><strong>Technisch bewijs:</strong> volledige CRUD, filtering, database en validatie.</li>
-            <li><strong>Haalbaar:</strong> compact genoeg om binnen de hackathon af te ronden.</li>
-            <li><strong>Uitbreidbaar:</strong> later mogelijk met accounts, reacties en notificaties.</li>
+            <li><strong>Create:</strong> nieuwe hulpvragen aanmaken via een formulier.</li>
+            <li><strong>Read:</strong> hulpvragen bekijken en filteren.</li>
+            <li><strong>Update:</strong> gegevens en status aanpassen.</li>
+            <li><strong>Delete:</strong> hulpvragen verwijderen.</li>
         </ul>
     </div>
 </section>
